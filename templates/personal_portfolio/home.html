@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Personal Portfolio Website
+{% endblock %}
+
+{% block content %}
+
+	<div class="container-fluid">
+        <div class="">
+        	<div id="header">
+        		<nav>
+	                <img src="{% static 'img/logo.png' %}" class="logo" alt="">
+	                <ul id="sidemenu">
+	                    <li><a href="#header">Home</a></li>
+	                    <li><a href="#about">About</a></li>
+	                    <li><a href="#services">Services</a></li>
+	                    <li><a href="#portfolio">Portfolio</a></li>
+	                    <li><a href="#contact">Contact</a></li>
+	                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+	                </ul>
+	                <i class="fa-solid fa-bars" onclick="openmenu()" ></i>
+	            </nav>
+	            <div class="header-text">
+	                <p>Django Developer</p>
+	                <h1>Hi, I'm <span>WinLinTun</span><br>from Myanmar</h1>
+	            </div>
+        	</div>
+        </div>
+    </div>
+
+	<!-- About section -->
+	<div id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 mb-3">
+					<img src="{% static 'img/user.jpg' %}" alt="user.jpg" class="about-photo">
+				</div>
+				<div class="col-md-8">
+					<h1 class="sub-title">About Me</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.</p>
+
+					<div class="text-title">
+						<p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links " onclick="opentab('experiences')">Experiences</p>
+                        <p class="tab-links" onclick="opentab('educations')">Educations</p>
+					</div>
+
+					<div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Django</span><br>Development Web Backend</li>
+                            <li><span>Flask</span><br>Development Web Backend</li>
+                            <li><span>Web Development</span><br>Development Products Server</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experiences">
+                        <ul>
+                            <li><span>2023 - Current</span><br>Data Entry</li>
+                            <li><span>2021</span><br>Develop Book Shop Website</li>
+                            <li><span>2020</span><br>Learning Python Programming</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="educations">
+                        <ul>
+                            <li><span>2019</span><br>B.Econ Bachelor Degree</li>
+                            <li><span>2015</span><br>School Graduated.</li>
+                        </ul>
+                    </div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Serives Section -->
+	<div id="services">
+		<div class="container">
+			<h1 class="sub-title">My Serivces</h1>
+
+			<div class="row services-list">
+				<div class="col-lg-4">
+					<div class="sel m-1">
+						<i class="fa-solid fa-code"></i>
+	                    <h2>Web Development</h2>
+	                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas id qui vitae dolorum fugiat nostrum aut</p>
+	                    <a href="#">Learn More</a>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="sel m-1">
+						<i class="fa-solid fa-crop-simple"></i>
+	                    <h2>Web Services</h2>
+	                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas id qui vitae dolorum fugiat nostrum aut</p>
+	                    <a href="#">Learn More</a>
+	                </div>
+				</div>
+				<div class="col-lg-4">
+					<div class="sel m-1">
+						<i class="fa-solid fa-shop"></i>
+	                    <h2>E-com Shop</h2>
+	                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas id qui vitae dolorum fugiat nostrum aut</p>
+	                    <a href="#">Learn More</a>
+	                </div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- portfolio -->
+	<div id="portfolio">
+		<div class="container">
+			<h1 class="sub-title">My Works</h1>
+
+			<div class="row work-list">
+				{% for project in object_list  %}
+				<div class="col-lg-4">
+					<div class="work m-1">
+						<img src="{{ project.image.url }}" alt="{{ project.title }}">
+						<div class="layer">
+							<h3>{{ project.title }}</h3>
+	                        <p>{{ project.description |truncatewords:"10" }}</p>
+	                        <a href="{% url 'detail' project.id %}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			<a href="{% url 'explorer' %}" class="mybtn">See More</a>
+		</div>
+	</div>
+
+	<!-- Contact Section -->
+	<div id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 contact-left">
+					<h1 class="sub-title"><i class="fa-solid fa-paper-plane"></i> Contact Me</h1>
+                    <p><i class="fa-solid fa-envelope"></i>contact@example.com</p>
+                    <p><i class="fa-solid fa-phone"></i>09255458532</p>
+                    <div class="social-icons mb-4">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="#" download class="btn btn-2">Download CV</a>
+				</div>
+				<div class="col-md-8 contact-right">
+					<form action="" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="messages" rows="6" placeholder="Your Messages"></textarea>
+                        <div class="text-center">
+                        	<button type="submit" class="mybtn btn-2">Submit</button>
+                        </div>
+                    </form>
+				</div>
+			</div>
+		</div>
+		<div class="copyright">
+            <p>Copyright 2023. Made which <i class="fa-solid fa-heart"></i> by Win Lin Tun. <a href="#">Back to Top</a></p>
+        </div>
+	</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+	Work Explorer
+{% endblock %}
+
+{% block content %}
+
+	<!-- portfolio -->
+	<div id="portfolio">
+		<div class="container">
+			<h1 class="sub-title">Portfolio List Here</h1>
+
+			<div class="row work-list">
+				{% for project in page_obj %}
+				<div class="col-lg-4">
+					<div class="work m-1">
+						<img src="{{ project.image.url }}" alt="{{ project.title }}">
+						<div class="layer">
+							<h3>{{ project.title }}</h3>
+	                        <p>{{ project.description |truncatewords:"10" }}</p>
+	                        <a href="{% url 'detail' project.id %}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="mt-5">
+				<a href="{% url 'home' %}" class="btn btn-2">Back</a>
+			</div>
+			<hr>
+		    <!-- top rating end -->
+		    {% if page_obj.has_other_pages %}
+		    <div class="mt-5">
+		    	<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				    <li class="page-item">
+				    	{% if page_obj.has_previous %}
+				      	<a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+				    	{% endif %}
+				    </li>
+				    <li class="page-item">
+				    	{% if page_obj.has_next %}
+				    	  <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+				    	{% endif %}
+				    </li>
+				  </ul>
+				</nav>
+		    </div>
+		    {% endif %}
+
+		</div>
+	</div>
+
+
+{% endblock %}

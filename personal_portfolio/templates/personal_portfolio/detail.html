@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+	Detail
+{% endblock %}
+
+
+{% block content %}
+	
+	<div class="container">
+		<h1>{{ object.title}}</h1>
+		<div class="row">
+			<div class="col-md-8">
+				<img src="{{ object.image.url }}" width="100%">
+			</div>
+			<div class="col-md-4">
+				<h5>About the project:</h5>
+				<p>{{ object.description }}</p>
+				<br>
+				<h5>Technology used:</h5>
+				<p>{{ object.technology }}</p>
+				<p><a href="{{ object.link }}" class="btn mybtn" target="_blank">Link</a></p>
+			</div>
+		</div>
+		<div class="mt-5">
+			<a href="{% url 'explorer' %}" class="btn btn-2">Back</a>
+		</div>
+	</div>
+
+{% endblock %}

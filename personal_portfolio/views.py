@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Project
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 class HomeView(ListView):
 	template_name = "personal_portfolio/home.html"
@@ -37,3 +40,17 @@ def work_explorer(request):
 	}
 
 	return render(request, "personal_portfolio/work_explorer.html", context)
+
+
+def sendMail(request):
+	if request.method == "POST":
+		name = request.POST.get('name')
+		email = request.POST.get('email')
+		messages = request.POST.get('messages')
+
+		subject = "Welcome to Django Web Mail Services"
+		message = f"\nYour messages\n--------------------------\n{messages}\n--------------------------\n\nHi {name}, thank you for your attention."
+		email_form = settings.EMAIL_HOST_USER
+		receipient_list = [email]
+		send_mail(subject, message, email_form, receipient_list)
+	return redirect("home")

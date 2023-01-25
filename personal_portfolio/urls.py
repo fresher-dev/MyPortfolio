@@ -8,6 +8,7 @@ urlpatterns = [
 	path("", views.HomeView.as_view(), name="home"),
 	path("<int:pk>/", views.ProjectDetailView.as_view(), name="detail"),
 	path("explorer/", views.work_explorer, name="explorer"),
+	path("send-mail/", views.sendMail, name="send"),
 ]
 
 

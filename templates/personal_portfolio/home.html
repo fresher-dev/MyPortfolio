@@ -150,7 +150,8 @@ Personal Portfolio Website
                     <a href="#" download class="btn btn-2">Download CV</a>
 				</div>
 				<div class="col-md-8 contact-right">
-					<form action="" method="POST">
+					<form action="{% url 'send' %}" method="POST">
+						{% csrf_token %}
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Your Email" required>
                         <textarea name="messages" rows="6" placeholder="Your Messages"></textarea>

@@ -10,7 +10,9 @@
 	<div id="portfolio">
 		<div class="container">
 			<h1 class="sub-title">Portfolio List Here</h1>
-
+			<div class="">
+				<a href="{% url 'add-project' %}" class="btn btn-2">Add Project</a>
+			</div>
 			<div class="row work-list">
 				{% for project in page_obj %}
 				<div class="col-lg-4">

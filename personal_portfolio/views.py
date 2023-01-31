@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Project
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.conf import settings
@@ -54,3 +55,8 @@ def sendMail(request):
 		receipient_list = [email]
 		send_mail(subject, message, email_form, receipient_list)
 	return redirect("home")
+
+class CreateProjectView(CreateView):
+	model = Project
+	fields = ['title', 'description', 'technology', 'image', 'link']
+	template_name = "personal_portfolio/add_project.html"

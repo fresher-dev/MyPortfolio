@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+	Project Added Form
+{% endblock %}
+{% block content %}
+	<div class="container">
+		<h3 class="sub-title text-center mb-5">Add Project Form</h3>
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-md-6">
+				<form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{ form.as_p }}
+					<button class="btn mybtn" type="submit">Submit</button>
+				</form>
+			</div>
+			<div class="col"></div>
+		</div>
+		<div class="mt-5">
+			<a href="{% url 'home' %}" class="btn btn-2">Back</a>
+		</div>
+	</div>
+{% endblock %}

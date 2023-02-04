@@ -1,5 +1,5 @@
 # MyPortfolio
-## Feather ##
+## Features ##
 <ol>
 <li>Home Section</li>
 <li>About Section</li>
